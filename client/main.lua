@@ -2071,3 +2071,16 @@ end
 function InPhone()
     return PhoneData.isOpen
 end
+
+RegisterNetEvent('qb-phone:RefreshPhone')
+AddEventHandler('qb-phone:RefreshPhone', function()
+    TriggerEvent("debug", 'Phone: Refresh', 'success')
+
+    LoadPhone()
+    SetTimeout(250, function()
+        SendNUIMessage({
+            action = "RefreshAlerts",
+            AppData = Config.PhoneApplications,
+        })
+    end)
+end)
